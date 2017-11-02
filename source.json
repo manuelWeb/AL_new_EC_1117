@@ -1,0 +1,28 @@
+{
+  "date": "1117",
+  "ref": {
+    "pk1" : "1600154",
+    "pk2" : "1619154",
+    "pk3" : "1652155"
+  },
+  "lib": {
+    "pk1" : "Starplug",
+    "pk2" : "Coupe saucisson",
+    "pk3" : "Baladeur CD portable"
+  },
+  "lib_url": {
+    "pk1" : "starplug",
+    "pk2" : "coupe-saucisson",
+    "pk3" : "baladeur-cd-portable"
+  },
+  "price": {
+    "pk1" : "56.90",
+    "pk2" : "29.90",
+    "pk3" : "39.90"
+  },
+  "url": {
+    "pk1" : "maison/bureau/",
+    "pk2" : "maison/cuisine/",
+    "pk3" : "high-tech/image-son/"
+  }
+}

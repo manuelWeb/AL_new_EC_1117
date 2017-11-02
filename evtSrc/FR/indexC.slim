@@ -1,0 +1,14 @@
+== Slim::Template.new('evtSrc/FR/var.slim').render
+doctype strict
+html
+  head
+    meta http-equiv="Content-Type" content="text/html;charset=UTF-8"
+    title HTML-Template
+    link rel="stylesheet" type="text/css" href="index.css" media="all"
+    / link href="index.scss"
+  body
+    #evtFirst_Link.centralEvent
+      a.btn href="https://www.latelierdelucie.fr/cat/fr/ECatalog.htm" onclick==$goo[0]+$date+$goo[1]
+        img src="cat.png" alt=""
+
+    script src="addblank.js" type="text/javascript"
