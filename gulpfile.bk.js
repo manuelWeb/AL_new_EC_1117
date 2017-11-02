@@ -40,24 +40,11 @@ gulp.task('dev', function (cb) {
   });
 });
 // src & output
-var src    = config.output,
-    img    = 'evtSrc/**/*.{png,jpg,gif,svg}',
-    dest   = config.dest,
-    date   = config.month + config.year + '_',
-    thname = config.brand;
-/*=================================
-=            task init            =
-=================================*/
-// browser-sync task !attention index.html require
-gulp.task('browserSync',function () {
-  'use strict';
-  browserSync({
-    // browser: 'chrome',
-    server: {
-      baseDir: 'evtProd/FR'
-    }
-  });
-});
+var src   = 'evtSrc/**/',
+    img   = 'evtSrc/**/*.{png,jpg,gif,svg}'
+    dest  = 'evtProd/',
+    date  = config.month + config.year + '_',
+    brand = config.brand + '_';
 function errorLog(error) {
   // console.log(error.toString());
   notifier.notify({
@@ -67,17 +54,31 @@ function errorLog(error) {
   console.log(error.toString());
   // this.emit('end');
 }
+/*=================================
+=            task init            =
+=================================*/
+// browser-sync task !attention index.html require
+gulp.task('browserSync',function () {
+  'use strict';
+  browserSync({
+    // browser   : 'chrome',
+    server    : {
+      baseDir : 'evtProd/FR'
+    }
+  });
+});
+
 // img-cp task
 gulp.task('images', function() {
   return gulp.src([src+'*.{png,jpg,gif,svg}'])
   // .pipe(npm()) // img optimize
-  // .pipe(changed(img))
+  .pipe(changed(img))
   .pipe(gulp.dest(dest))
+  .pipe(browserSync.reload({stream: true }))
   .on('end',function () {
     // start slim to render
     gulp.start('slim');
   })
-  .pipe(browserSync.reload({stream: true }))
 });
 
 // script-cp task
@@ -103,6 +104,10 @@ gulp.task('sass', function() {
   // ecrit srcMap dans style.css
   .pipe(sourcemaps.write())
   .pipe(autoprefixer(['last 2 version', '> 1%', 'ie >= 8']))
+  .pipe(changed(dest))
+  // .pipe(rename(function(path) {
+  //   path.dirname += "/../css";
+  // }))
   .pipe(gulp.dest(dest))
   .pipe(using())
   .pipe(browserSync.reload({stream: true }));
@@ -111,13 +116,16 @@ gulp.task('sass', function() {
 // slim task
 gulp.task('slim', function () {
   var slimEnd = false;
+  // return gulp.src([src+'*.slim'])
   return gulp.src([src+'indexC.slim'])
-  .pipe(slim( {pretty: true, tabsize: 2 }))
+  // .pipe(plumber())
+  .pipe(slim( {pretty: true, tabsize: 2 })) // {read:false},
   .on('error', errorLog)
   .pipe(rename({
     basename: "index",
     extname : ".html"
   }))
+  // .pipe(changed(dest))
   .pipe(using())
   .pipe(gulp.dest(dest))
   .on('end',function () {
@@ -134,13 +142,14 @@ function messageSlimEnd (slimEnd) {
 };
 
 gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
-  gulp.watch([src+'*.{png,jpg,gif}'],['sass','images'])
+  gulp.watch([src+'*.{png,jpg,gif}'],['images'])
   gulp.watch(src+'*.scss',['slim','sass','images','script']);
   gulp.watch(src+'*.slim',['slim','images','script']);
+  gulp.watch(src+'partial/*.slim',['slim','images','script']);
 });
 
 // prod
-
+// crea cp de dest > preview
 // replace ../images/src/ (css) & images/src/blabla (html)
 gulp.task('killCssMap', function(){
   ncp(dest, 'preview/', function (err) {
@@ -174,13 +183,19 @@ gulp.task('zipAllGuy',function () {
       var fileName = file.path.substr(file.path.lastIndexOf("\\") + 1);
       console.log('fileName ' + fileName + ' file ' + file.path)
       gulp.src("./evtProd/" + fileName + "/*")
-        .pipe(zip(date + thname + fileName + ".zip"))
-        .pipe(gulp.dest("./zipped"));
+        .pipe(zip(date + brand + fileName + ".zip"))
+        .pipe(gulp.dest("./zipped"))
+        .on('end', function () {
+          console.log('archive OK');
+          rimraf('evtProd/', function(error){
+            console.log('evtProd/ is deleted')
+          });
+          console.log('supp OK');
+        })
 
       return stream;
     }));// end foreach
 
-  console.log('archive OK')
 
 });
 
@@ -205,13 +220,17 @@ gulp.task('html', function() {
       var htmlString = fs.readFileSync(files[i]).toString();
       var parsedHTML = $.load(htmlString);
       // console.log('htmlString> ' + htmlString);
-      parsedHTML('#hpAnimCo').map(function(arg, zoneL) {
+      parsedHTML('body').map(function(arg, zoneL) {
         zoneL = $(zoneL);
         zoneL = zoneL.html()
         .replace(/(<img("[^"]*"|[^\/">])*)>/g, "$1 />")
-        // .replace(/(<br[^\/])/, "<br />")
-        .replace(/<br>/g, "<br />").replace(/(<br[^\s][^\/])/, "<br />").replace(/&apos;/g, "'")
-        .replace(/&#x20AC;/g, "&euro;").replace(/&#xE9;/g, "&eacute;").replace(/&#xC9;/g, "&Eacute;");
+        .replace(/(<input("[^"]*"|[^\/">])*)>/g, "$1 />")
+        .replace(/(<br[^\/])/, "<br />")
+        .replace(/<br>/, "<br />")
+        .replace(/&apos;/g, "'")
+        .replace(/&#x20AC;/g, "&euro;")
+        .replace(/&#xE9;/g, "&eacute;")
+        .replace(/&#xC9;/g, "&Eacute;");
         console.log('html parse: ' + zoneL);
         
         if(i===0){
