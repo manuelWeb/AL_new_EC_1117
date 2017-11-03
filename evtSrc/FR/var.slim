@@ -1,9 +1,11 @@
 / ### !important créer les variable depuis source.json
+/ NE PAS TOUCHER LE CODE ÇI DESSOUS !!!!
 -require 'json'
--file = File.read('source.json')
+-file   = File.read('source.json')
 -$objso = JSON.parse(file)
 
-- $date = $objso["date"]
-- $goo =["ga('local.send', 'event', 'EncartHP_Ecata', 'EncartHP_Ecata-","', document.location.pathname);"]
+- $rayEvt  = "boutique/rayon_evenement.aspx?pg=0&evenement_id=#{$objso["ID"]}"
+- $date   = $objso["date"]
+- $goo    =["ga('local.send', 'event', 'EncartHP_Ecata', 'EncartHP_Ecata-","', document.location.pathname);"]
 -$ggstart = "ga('local.send', 'event', 'EncartHP_#{$date}', "
--$ggend = "document.location.pathname);"
+-$ggend   = "document.location.pathname);"

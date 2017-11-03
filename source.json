@@ -26,11 +26,12 @@
     "pk2" : "29.90",
     "pk3" : "39.90"
   },
-  "rID" : "818",
+  "ID" : "818",
+  "cat_link" : "https://www.latelierdelucie.fr/cat/fr/ECatalog.htm",
   "###config" : "NE PAS MODIFER",
-  "month" : "09",
+  "month" : "11",
   "year"  : "17",
   "output" : "evtSrc/**/",
   "dest"   : "evtProd/",
-  "brand" : "AL"
+  "brand" : "AL_new"
 }
