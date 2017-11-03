@@ -3,5 +3,7 @@
 -file = File.read('source.json')
 -$objso = JSON.parse(file)
 
-- $date ="0917"
+- $date = $objso["date"]
 - $goo =["ga('local.send', 'event', 'EncartHP_Ecata', 'EncartHP_Ecata-","', document.location.pathname);"]
+-$ggstart = "ga('local.send', 'event', 'EncartHP_#{$date}', "
+-$ggend = "document.location.pathname);"

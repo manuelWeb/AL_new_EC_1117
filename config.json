@@ -1,7 +1,0 @@
-{
-  "month" : "09",
-  "year"  : "17",
-  "output" : "evtSrc/**/",
-  "dest"   : "evtProd/",
-  "brand" : "AL"
-}

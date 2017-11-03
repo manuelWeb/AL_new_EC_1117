@@ -3,27 +3,30 @@
 ==================================================*/
 // to disable>dest path replace fs
 /*----------  dependance  > package.json > node_modules  ----------*/
-var gulp           = require('gulp'),
-    browserSync    = require('browser-sync'),
-    slim           = require("gulp-slim"),
-    sass           = require('gulp-sass'),
-    plumber        = require('gulp-plumber'),
-    autoprefixer   = require('gulp-autoprefixer'),
-    rename         = require('gulp-rename'),
-    using          = require('gulp-using'),
-    rm             = require('gulp-rimraf'),
-    rimraf         = require('rimraf'),
-    gulprunseq     = require('gulp-run-seq'),
-    sourcemaps     = require('gulp-sourcemaps'),
-    imgmin         = require('gulp-imagemin'),
-    replace        = require('gulp-replace'),
-    changed        = require('gulp-changed'),
-    zip            = require('gulp-zip'),
-    prettify       = require('gulp-html-prettify'),
-    foreach        = require("gulp-foreach"),
-    fs             = require('fs'),
-    ncp            = require('ncp').ncp,
-    config         = require("./config.json");
+var gulp         = require('gulp'),
+    browserSync  = require('browser-sync'),
+    slim         = require("gulp-slim"),
+    sass         = require('gulp-sass'),
+    plumber      = require('gulp-plumber'),
+    autoprefixer = require('gulp-autoprefixer'),
+    rename       = require('gulp-rename'),
+    using        = require('gulp-using'),
+    rm           = require('gulp-rimraf'),
+    rimraf       = require('rimraf'),
+    gulprunseq   = require('gulp-run-seq'),
+    sourcemaps   = require('gulp-sourcemaps'),
+    imgmin       = require('gulp-imagemin'),
+    replace      = require('gulp-replace'),
+    changed      = require('gulp-changed'),
+    zip          = require('gulp-zip'),
+    prettify     = require('gulp-html-prettify'),
+    foreach      = require("gulp-foreach"),
+    fs           = require('fs'),
+    ncp          = require('ncp').ncp,
+    babel        = require("gulp-babel"),
+    uglify       = require('gulp-uglify'),
+    config       = require("./source.json");
+
     const notifier = require('node-notifier');
 
 // delete old folder before start dev task
@@ -70,8 +73,7 @@ function errorLog(error) {
 // img-cp task
 gulp.task('images', function() {
   return gulp.src([src+'*.{png,jpg,gif,svg}'])
-  // .pipe(npm()) // img optimize
-  // .pipe(changed(img))
+  // img optimize
   .pipe(gulp.dest(dest))
   .on('end',function () {
     // start slim to render
@@ -82,10 +84,20 @@ gulp.task('images', function() {
 
 // script-cp task
 gulp.task('script', function() {
-  'use strict';
   return gulp.src([src+'*.js'])
-  // .pipe(npm()) // js traitement
-  .pipe(changed(src+'*.js'))
+  // js traitement
+  .pipe(plumber())
+  .pipe(babel())
+  // .pipe(uglify({
+  //   output: {
+  //     comments: false,
+  //     beautify: true,
+  //     indent_level: 2
+  //   },
+  //   mangle: false,
+  //   compress: false
+  // }))
+  .pipe(uglify())
   .pipe(gulp.dest(dest))
 });
 
@@ -133,10 +145,17 @@ function messageSlimEnd (slimEnd) {
   console.log('slimeEnd: '+slimEnd);
 };
 
+// gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
+//   gulp.watch([src+'*.{png,jpg,gif}'],['sass','images'])
+//   gulp.watch([src+'*.js'],['script','slim','sass','images'])
+//   gulp.watch(src+'*.scss',['slim','sass','images','script']);
+//   gulp.watch(['source.json', src+'*.slim'],['slim','images','script']);
+// });
 gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
-  gulp.watch([src+'*.{png,jpg,gif}'],['sass','images'])
-  gulp.watch(src+'*.scss',['slim','sass','images','script']);
-  gulp.watch(src+'*.slim',['slim','images','script']);
+  gulp.watch([src+'*.{png,jpg,gif}'],['images','slim','sass'])
+  gulp.watch([src+'*.js'],['script','slim','sass'])
+  gulp.watch(src+'*.scss',['slim','sass','script']);
+  gulp.watch(['source.json', src+'*.slim'],['slim','script']);
 });
 
 // prod

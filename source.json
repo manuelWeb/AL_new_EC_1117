@@ -1,27 +1,36 @@
 {
+  "urlb" : "https://www.latelierdelucie.fr/fr/",
+  "date" : "1117",
   "ref": {
-    "pk1" : "1600154",
-    "pk2" : "1619154",
-    "pk3" : "1652155"
+    "pk1" : "1730191",
+    "pk2" : "1749191",
+    "pk3" : "1751197"
   },
   "lib": {
-    "pk1" : "Starplug",
-    "pk2" : "Coupe saucisson",
-    "pk3" : "Baladeur CD portable"
+    "pk1" : "Kit calendrier de l’Avent",
+    "pk2" : "Set 3 sachets senteur Noël point compté",
+    "pk3" : "Kit coussin canevas écureuil en hiver"
+  },
+  "url": {
+    "pk1" : "loisirs-creatifs/no-l/",
+    "pk2" : "broderie-point-compte/point-compte-evenement/",
+    "pk3" : "canevas/coussins-au-point-croix/"
   },
   "lib_url": {
-    "pk1" : "starplug",
-    "pk2" : "coupe-saucisson",
-    "pk3" : "baladeur-cd-portable"
+    "pk1" : "kit-calendrier-l-avent-traineau",
+    "pk2" : "set-3-sachets-senteur-no-l-point-compte",
+    "pk3" : "kit-coussin-canevas-ecureuil-en-hiver"
   },
   "price": {
     "pk1" : "56.90",
     "pk2" : "29.90",
     "pk3" : "39.90"
   },
-  "url": {
-    "pk1" : "maison/bureau/",
-    "pk2" : "maison/cuisine/",
-    "pk3" : "high-tech/image-son/"
-  }
+  "rID" : "818",
+  "###config" : "NE PAS MODIFER",
+  "month" : "09",
+  "year"  : "17",
+  "output" : "evtSrc/**/",
+  "dest"   : "evtProd/",
+  "brand" : "AL"
 }
