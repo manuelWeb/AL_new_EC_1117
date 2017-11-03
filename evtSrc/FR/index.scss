@@ -6,7 +6,7 @@
 $fontSerif: Georgia, "Times New Roman", Times, serif;
 $font-stack-arial: Arial, Helvetica, sans-serif;
 $bg-btn: #006737;
-$bg-btnCat: #C3B191;
+$bg-btnCat: #6B4795;
 $primColor : #6B4795;
 .centralEvent {
   position: relative;
@@ -61,25 +61,36 @@ img[src ^= "pk"] {
   }
   .lab-cat {
     display: block;
-    font: bold 12px $font-stack-arial;
+    font: 12px $font-stack-arial;
     text-transform: uppercase;
     color: #FAB500;
+    b {
+      font-weight: normal;
+      &:hover {
+        color: red !important;
+      }
+    }
   }
 }
 span {
+  z-index: 1;
+  position: absolute;
+  left: 765px;
+  top: 241px;
   display: inline-block;
-  padding: 5px 15px; margin-top: 0.3em;
+  padding: 8px 10px;
   cursor: pointer;
-  color: #390907;
+  color: #fff;
   border: medium none;
-  background-color: $bg-btnCat;
-  font: bold 14px Arial;
-  border: 1px solid #FFF;
+  background-color: #6B4795;
+  font: 14px Arial;
+  border: 1px solid #3A2752;
   border-radius: 10px;
   transition: all 0.5s ease-in-out 0s;
-  &:hover span {
-    border: 1px solid $bg-btn;
-    color: $bg-btn;
-    background-color: tint($bg-btnCat, 50%);
+  &:hover {
+    // border: 1px solid $bg-btn;
+    // color: $bg-btn;
+    background-color: #3A2752;
+    // background-color: tint($bg-btnCat,#6B4795);
   }
 }
