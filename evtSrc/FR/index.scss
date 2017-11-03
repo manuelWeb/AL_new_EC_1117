@@ -8,6 +8,9 @@ $font-stack-arial: Arial, Helvetica, sans-serif;
 $bg-btn: #006737;
 $bg-btnCat: #6B4795;
 $primColor : #6B4795;
+$EC_height: 485;
+// surcharge
+#hpAnimCo{height: #{$EC_height}px;}
 .centralEvent {
   position: relative;
   width: 964px;
@@ -15,22 +18,40 @@ $primColor : #6B4795;
   margin: 0;
   background: url(bg.jpg) no-repeat;
 }
+.bg_fg {
+  position: absolute;
+  z-index: 1;
+  left: 6px; top: 14px;
+}
 .centerPk {
   position: absolute;
   top: 10px; left: 132px;
 }
 ul {margin: 0; padding: 0;}
-li[class^=pck] {
+li.pck1, li.pck2, li.pck3 {
   display: inline-block;
-  // img[src*="1"] {
-  a[onclick*="pk"] {
-    display: block;
-  }
-  a[onclick*="pk1"] {transform: rotate(-6deg); }
-  a[onclick*="pk2"] {transform: rotate(2deg); }
-  a[onclick*="pk3"] {transform: rotate(6deg); }
 }
-img[src ^= "pk"] {
+li.pck1 a, li.pck2 a, li.pck3 a {
+  display: block;
+  transition: all 0.5s ease-in-out 0s;
+}
+li.pck1 a:hover {transform: inherit; }
+li.pck2 a:hover {transform: inherit; }
+li.pck3 a:hover {transform: inherit; }
+
+li.pck1 a {transform: rotate(-6deg);}
+li.pck2 a {transform: rotate(2deg);}
+li.pck3 a {transform: rotate(6deg);}
+
+li.pck1 img {
+  border: 6px solid #fff;
+  box-shadow: 0 0 20px rgba($primColor,0.8);
+}
+li.pck2 img {
+  border: 6px solid #fff;
+  box-shadow: 0 0 20px rgba($primColor,0.8);
+}
+li.pck3 img {
   border: 6px solid #fff;
   box-shadow: 0 0 20px rgba($primColor,0.8);
 }
@@ -40,20 +61,23 @@ img[src ^= "pk"] {
   left: 787px;
   height: 235px;
 }
-
 .raylink {
   float: left;
   width: 100%;
   height: 100%;
 }
 .btnCata {
+  cursor: pointer;
   float: right;
   margin-top: 30px; margin-right: 36px;
   line-height: 0;
   text-align: center;
   text-decoration: none;
-  &:hover img {
-    transform: rotate(8deg);
+  img {
+    box-shadow: 7px 7px 4px rgba(#000, 0.45);
+    &:hover {
+      transform: rotate(8deg);
+    }
   }
   img {
     margin-bottom: 5px;
@@ -66,9 +90,7 @@ img[src ^= "pk"] {
     color: #FAB500;
     b {
       font-weight: normal;
-      &:hover {
-        color: red !important;
-      }
+      text-decoration: underline;
     }
   }
 }
@@ -80,16 +102,17 @@ span {
   display: inline-block;
   padding: 8px 10px;
   cursor: pointer;
-  color: #fff;
   border: medium none;
   background-color: #6B4795;
   font: 14px Arial;
   border: 1px solid #3A2752;
   border-radius: 10px;
   transition: all 0.5s ease-in-out 0s;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
   &:hover {
-    // border: 1px solid $bg-btn;
-    // color: $bg-btn;
     background-color: #3A2752;
     // background-color: tint($bg-btnCat,#6B4795);
   }

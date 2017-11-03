@@ -8,7 +8,10 @@ html
     / link href="index.scss"
   body
     #evtFirst_Link.centralEvent
-      a.btnCata href="" target="_blank"
+      #globalLink
+        .bottomfade
+      img.bg_fg src="bg_fg.png" alt=""/
+      a.btnCata href==($objso["cat_link"]) target="_blank"
         img.bt-cata src="cat.png" alt=""
         label.lab-cat
           | je feuillette
@@ -17,7 +20,9 @@ html
           br
           b style="color: #fff" Cliquez ici
       
-      span Voir toutes les nouveautés
+      span
+        a href==($objso["urlb"]+$rayEvt)
+          | Voir toutes les nouveautés
       / pk
       .centerPk
         ul
@@ -27,10 +32,5 @@ html
             li class="pck#{i}"
               a href==(link) onclick==(ggal)
                 img src="pk#{i}.jpg" alt==($objso["lib"]["pk#{i}"])
-
-
-      / a.btn href="https://www.latelierdelucie.fr/cat/fr/ECatalog.htm"
-      /   / onclick==$goo[0]+$date+$goo[1]
-      /   img src="cat.png" alt=""
 
     script src="app_zl-ec-al.js" type="text/javascript"

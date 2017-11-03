@@ -1,0 +1,1 @@
+"use strict";!function(){console.log("heloo");var o=function(o){var n=void 0,t=void 0;return o.map(function(l){t=Math.floor(Math.random()*o.length),n=o[l],o[l]=o[t],o[t]=n}),o};console.log(o([1,2,3,4,5,6,7]))}();

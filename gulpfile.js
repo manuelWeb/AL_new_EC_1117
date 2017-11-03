@@ -158,7 +158,7 @@ gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
   gulp.watch(['source.json', src+'*.slim'],['slim','script']);
 });
 
-// prod
+// ##### prod
 
 // replace ../images/src/ (css) & images/src/blabla (html)
 gulp.task('killCssMap', function(){
@@ -195,7 +195,6 @@ gulp.task('zipAllGuy',function () {
       gulp.src("./evtProd/" + fileName + "/*")
         .pipe(zip(date + thname + fileName + ".zip"))
         .pipe(gulp.dest("./zipped"));
-
       return stream;
     }));// end foreach
 
@@ -213,7 +212,9 @@ function htmlEnd (htmlEndBool) {
 // static
 // @see http://maxogden.com/scraping-with-node.html
 gulp.task('html', function() {
-  // console.log(__filename); // console.log(__dirname); // console.log(process.cwd());
+  console.log(__filename);
+  console.log(__dirname);
+  console.log(process.cwd());
   var $ = require('cheerio');
   var fs = require('fs');
   var glob = require("glob");
@@ -224,7 +225,7 @@ gulp.task('html', function() {
       var htmlString = fs.readFileSync(files[i]).toString();
       var parsedHTML = $.load(htmlString);
       // console.log('htmlString> ' + htmlString);
-      parsedHTML('#hpAnimCo').map(function(arg, zoneL) {
+      parsedHTML('body').map(function(arg, zoneL) {
         zoneL = $(zoneL);
         zoneL = zoneL.html()
         .replace(/(<img("[^"]*"|[^\/">])*)>/g, "$1 />")
