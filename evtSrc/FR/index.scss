@@ -67,24 +67,24 @@ li.pck3 img {
   height: 100%;
 }
 .btnCata {
-  cursor: pointer;
   float: right;
   margin-top: 30px; margin-right: 36px;
+  padding-bottom: 32px;
+  // outline: solid;
   line-height: 0;
   text-align: center;
   text-decoration: none;
   img {
     box-shadow: 7px 7px 4px rgba(#000, 0.45);
-    &:hover {
-      transform: rotate(8deg);
-    }
-  }
-  img {
     margin-bottom: 5px;
     transition: all 0.5s ease-in-out 0s;
   }
+  &:hover img {
+    transform: rotate(8deg);
+  }
   .lab-cat {
     display: block;
+    cursor: pointer;
     font: 12px $font-stack-arial;
     text-transform: uppercase;
     color: #FAB500;
@@ -94,6 +94,8 @@ li.pck3 img {
     }
   }
 }
+    /* &:hover {
+    } */
 span {
   z-index: 1;
   position: absolute;
