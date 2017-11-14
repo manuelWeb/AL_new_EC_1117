@@ -10,7 +10,10 @@ $bg-btnCat: #6B4795;
 $primColor : #6B4795;
 $EC_height: 485;
 // surcharge
-#hpAnimCo{height: #{$EC_height}px;}
+#hpAnimCo{
+  height: #{$EC_height}px;
+  box-sizing: border-box;
+}
 .centralEvent {
   position: relative;
   width: 964px;
@@ -68,9 +71,9 @@ li.pck3 img {
 }
 .btnCata {
   float: right;
-  margin-top: 30px; margin-right: 36px;
+  width: 116px;
+  margin-top: 30px; margin-right: 31px;
   padding-bottom: 32px;
-  // outline: solid;
   line-height: 0;
   text-align: center;
   text-decoration: none;
@@ -79,8 +82,14 @@ li.pck3 img {
     margin-bottom: 5px;
     transition: all 0.5s ease-in-out 0s;
   }
-  &:hover img {
-    transform: rotate(8deg);
+  &:hover {
+    img {
+      transform: rotate(8deg);
+    }
+    .lab-cat {
+      margin-top: 3px;
+      line-height: 18px;
+    }
   }
   .lab-cat {
     display: block;
@@ -92,11 +101,12 @@ li.pck3 img {
       font-weight: normal;
       text-decoration: underline;
     }
+    line-height: 15px;
+    transition: all 0.5s ease-in-out 0s;
   }
 }
-    /* &:hover {
-    } */
-span {
+
+.btnRay {
   z-index: 1;
   position: absolute;
   left: 765px;
