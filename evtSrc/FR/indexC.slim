@@ -1,3 +1,4 @@
+-lib = [["Kit coussin point noué", ""], ["Kit créatif perles 5 étoiles", ""], ["Papier cadeau", "Etoiles rouge/vert"]]
 == Slim::Template.new('evtSrc/FR/var.slim').render
 doctype strict
 html
@@ -10,7 +11,7 @@ html
     #evtFirst_Link.centralEvent
       #globalLink
         .bottomfade
-      img.bg_fg src="bg_fg.png" alt=""/
+      img.bg_fg src="bg_fg.png" alt=""
       a.btnCata href==($objso["cat_link"]) target="_blank"
         img.bt-cata src="cat.png" alt=""
         label.lab-cat
@@ -18,11 +19,10 @@ html
           br
           | mon catalogue !
           br
-          b style="color: #fff" Cliquez ici
+          b Cliquez ici
       
-      span.btnRay
-        a href==($objso["urlb"]+$rayEvt)
-          | Voir toutes les nouveautés
+      a.btnRay href==($objso["urlb"]+$rayEvt)
+        | Voir toutes les nouveautés
       / pk
       .centerPk
         ul
@@ -30,7 +30,17 @@ html
             - link = $objso["urlb"]+$objso["url"]["pk#{i}"]+$objso["lib_url"]["pk#{i}"]+"/"+$objso["ref"]["pk#{i}"]+".html"
             - ggal = $ggstart+"'pk#{i}_"+$objso["ref"]["pk#{i}"]+"', "+$ggend
             li class="pck#{i}"
+              p
+                -if $objso["lib"]["pk#{i}"][1] == ""
+                  span == $objso["lib"]["pk#{i}"][0]
+                -else
+                  span == $objso["lib"]["pk#{i}"][0]
+                  span == $objso["lib"]["pk#{i}"][1]
+              
+              / price
+              span.evt-price == $objso["price"]["pk#{i}"] + "€"
+
               a href==(link) onclick==(ggal)
-                img src="pk#{i}.jpg" alt==($objso["lib"]["pk#{i}"])
+                img src="pk#{i}.jpg" alt=""
 
     script src="app_zl-ec-al.js" type="text/javascript"

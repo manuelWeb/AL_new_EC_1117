@@ -46,7 +46,7 @@ gulp.task('dev', function (cb) {
 var src    = config.output,
     img    = 'evtSrc/**/*.{png,jpg,gif,svg}',
     dest   = config.dest,
-    date   = config.month + config.year + '_',
+    date   = config.date + '_',
     thname = config.brand;
 /*=================================
 =            task init            =
@@ -145,12 +145,6 @@ function messageSlimEnd (slimEnd) {
   console.log('slimeEnd: '+slimEnd);
 };
 
-// gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
-//   gulp.watch([src+'*.{png,jpg,gif}'],['sass','images'])
-//   gulp.watch([src+'*.js'],['script','slim','sass','images'])
-//   gulp.watch(src+'*.scss',['slim','sass','images','script']);
-//   gulp.watch(['source.json', src+'*.slim'],['slim','images','script']);
-// });
 gulp.task('dev1',['images','script','slim','sass','browserSync'], function() {
   gulp.watch([src+'*.{png,jpg,gif}'],['images','slim','sass'])
   gulp.watch([src+'*.js'],['script','slim','sass'])

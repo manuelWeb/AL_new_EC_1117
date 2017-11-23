@@ -32,19 +32,49 @@ $EC_height: 485;
 }
 ul {margin: 0; padding: 0;}
 li.pck1, li.pck2, li.pck3 {
+  position: relative;
   display: inline-block;
-}
-li.pck1 a, li.pck2 a, li.pck3 a {
-  display: block;
+  width: 216px; height: 250px;
   transition: all 0.5s ease-in-out 0s;
+  transform-style: preserve-3d;
+  p {
+    position: absolute;
+    width: 216px-12px;
+    margin: 6px 0 0;
+    padding: 6px;
+    text-align: center;
+  }
+  span {
+    text-rendering: optimizeLegibility;
+    font: normal 14px Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #fff;
+    padding: 2px 6px;
+    background-color: $primColor;
+    &+span {
+      display: inline-block;
+    }
+  }
+  .evt-price {
+    // transform-style: initial;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    bottom: 10px;
+    border: 1px solid $primColor;
+    box-shadow: 0 0 4px $primColor;
+    color: $primColor;
+    line-height: 16px;
+    font-weight: bold;
+    background-color: #fff;
+  }
 }
-li.pck1 a:hover {transform: inherit; }
-li.pck2 a:hover {transform: inherit; }
-li.pck3 a:hover {transform: inherit; }
 
-li.pck1 a {transform: rotate(-6deg);}
-li.pck2 a {transform: rotate(2deg);}
-li.pck3 a {transform: rotate(6deg);}
+li.pck1 {&:hover {transform: inherit; } }
+li.pck2 {&:hover {transform: inherit; } }
+li.pck3 {&:hover {transform: inherit; } }
+li.pck1 {transform: rotate(-6deg);}
+li.pck2 {transform: rotate(2deg);}
+li.pck3 {transform: rotate(6deg);}
 
 li.pck1 img {
   border: 6px solid #fff;
@@ -98,8 +128,10 @@ li.pck3 img {
     text-transform: uppercase;
     color: #FAB500;
     b {
-      font-weight: normal;
+      // font-weight: normal;
+      letter-spacing: 0.05em;
       text-decoration: underline;
+      color: #fff;
     }
     line-height: 15px;
     transition: all 0.5s ease-in-out 0s;
@@ -120,12 +152,16 @@ li.pck3 img {
   border: 1px solid #3A2752;
   border-radius: 10px;
   transition: all 0.5s ease-in-out 0s;
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
+  color: #fff;
+  text-decoration: none;
   &:hover {
     background-color: #3A2752;
     // background-color: tint($bg-btnCat,#6B4795);
   }
 }
+
+
+
+
+    // top: 50%; left: 50%;
+    // transform: translate(-50%, -200%);

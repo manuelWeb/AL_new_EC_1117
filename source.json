@@ -1,30 +1,30 @@
 {
   "urlb" : "https://www.latelierdelucie.fr/fr/",
-  "date" : "1117",
+  "date" : "1217",
   "ref": {
-    "pk1" : "1730191",
-    "pk2" : "1749191",
-    "pk3" : "1751197"
+    "pk1" : "1754191",
+    "pk2" : "1734193",
+    "pk3" : "1145499"
   },
   "lib": {
-    "pk1" : "Kit calendrier de l’Avent",
-    "pk2" : "Set 3 sachets senteur Noël point compté",
-    "pk3" : "Kit coussin canevas écureuil en hiver"
+    "pk1" : ["Kit coussin point noué", ""],
+    "pk2" : ["Kit créatif perles 5 étoiles", ""],
+    "pk3" : ["Papier cadeau étoiles", "rouge/vert"]
   },
   "url": {
-    "pk1" : "loisirs-creatifs/no-l/",
-    "pk2" : "broderie-point-compte/point-compte-evenement/",
-    "pk3" : "canevas/coussins-au-point-croix/"
+    "pk1" : "canevas/coussins-au-point-noue/",
+    "pk2" : "loisirs-creatifs/perles-paillettes/",
+    "pk3" : "loisirs-creatifs/no-l/"
   },
   "lib_url": {
-    "pk1" : "kit-calendrier-l-avent-traineau",
-    "pk2" : "set-3-sachets-senteur-no-l-point-compte",
-    "pk3" : "kit-coussin-canevas-ecureuil-en-hiver"
+    "pk1" : "kit-coussin-point-noue",
+    "pk2" : "kit-creatif-perles-5-etoiles",
+    "pk3" : "papier-cadeau-etoiles-rouge-vert"
   },
   "price": {
-    "pk1" : "56.90",
-    "pk2" : "29.90",
-    "pk3" : "39.90"
+    "pk1" : "56.50",
+    "pk2" : "12.99",
+    "pk3" : "12.99"
   },
   "ID" : "818",
   "cat_link" : "https://www.latelierdelucie.fr/cat/fr/ECatalog.htm",
